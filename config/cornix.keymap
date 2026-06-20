@@ -136,6 +136,18 @@
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;
         };
+
+        // 親指 Ctrl/Space・Shift/Enter 用: 誤爆対策版 mod-tap
+        tmt: thumb_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;            // 連打で Space/Enter リピート可
+            require-prior-idle-ms = <125>;   // 直前に打鍵→tap確定（Ctrl/Shift 暴発防止）
+        };
     };
 
     conditional_layers {
@@ -193,10 +205,10 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp TAB  &kp Q          &kp W         &kp E         &kp R                &kp T                      &kp Y      &kp U                &kp I            &kp O         &kp P             &kp BSLH
-&kp ESC  &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                      &kp H      &hm_shift_r RSHFT J  &hm_r RGUI K     &hm_r RALT L  &hm_r RCTRL SEMI  &kp SQT
-&mo 4    &hm_l LGUI Z   &kp X         &kp C         &kp V                &kp B        &none  &none  &kp N      &kp M                &kp COMMA        &kp DOT       &kp FSLH          &kp BACKSPACE
-&none    &none          &none         &lt 6 ESCAPE  &mo 2                &lt 5 SPACE                &kp ENTER  &mo 3                &lt 2 BACKSPACE  &none         &none             &none
+&kp ESC       &kp Q  &kp W  &kp E     &kp R  &kp T                                  &kp Y           &kp U  &kp I      &kp O    &kp P     &kp DEL
+&mt LALT TAB  &kp A  &kp S  &kp D     &kp F  &kp G                                  &kp H           &kp J  &kp K      &kp L    &kp SEMI  &kp BSPC
+&kp LSHFT     &kp Z  &kp X  &kp C     &kp V  &kp B               &none  &none       &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp SQT
+&none         &none  &none  &kp LGUI  &mo 2  &tmt LCTRL SPACE                       &tmt LSHFT RET  &mo 3  &kp RGUI   &none    &none     &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -232,10 +244,10 @@
             //               |     |      |      |      |        |  |       |      |       |       |      |
 
             bindings = <
-&none  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT                  &kp CARET  &kp AMPS      &kp ASTRK  &kp LPAR   &kp RPAR  &kp PIPE
-&none  &none     &kp LBKT  &kp RBKT  &kp LBRC  &kp RBRC                   &kp EQUAL  &kp UNDER     &kp MINUS  &kp PLUS   &kp DQT   &kp SQT
-&none  &none     &kp RBKT  &kp RPAR  &kp PIPE  &kp BSLH   &trans  &trans  &kp FSLH   &kp QUESTION  &kp GRAVE  &kp TILDE  &kp SQT   &none
-&none  &none     &none     &none     &trans    &trans                     &kp TILDE  &trans        &kp GRAVE  &none      &none     &none
+&none   &kp EXCL  &kp AT  &kp HASH  &kp DLLR   &kp PRCNT                  &kp CARET  &kp AMPS   &kp ASTRK    &kp LBRC  &kp RBRC  &none
+&none   &none     &none   &kp BSLH  &kp GRAVE  &none                      &kp LT     &kp MINUS  &kp EQUAL    &kp LPAR  &kp RPAR  &none
+&none   &none     &none   &kp PIPE  &kp TILDE  &none      &trans  &trans  &kp GT     &kp UNDER  &kp KP_PLUS  &kp LBKT  &kp RBKT  &none
+&trans  &trans    &trans  &trans    &trans     &trans                     &trans     &trans     &trans       &trans    &trans    &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -251,10 +263,10 @@
             //                |      |       |       |      |      |  |      |      |      |       |      |
 
             bindings = <
-&trans  &kp F1  &kp F2  &kp F3   &kp F4  &kp F5                         &kp F6    &kp F7     &kp F8     &kp F9    &kp F10  &kp F11
-&trans  &kp N5  &kp N4  &kp N3   &kp N2  &kp N1                         &kp BSPC  &kp MINUS  &kp EQUAL  &kp PLUS  &kp DQT  &kp F12
-&trans  &kp N6  &kp N7  &kp N8   &kp N9  &kp N0         &trans  &trans  &kp TAB   &kp INS    &kp HOME   &kp END   &trans   &trans
-&none   &none   &none   &kp TAB  &trans  &kp BACKSPACE                  &trans    &trans     &kp N3     &none     &none    &none
+&none   &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_N4  &kp KP_N5                       &kp KP_N6     &kp KP_N7     &kp KP_N8  &kp KP_N9  &kp KP_N0  &none
+&none   &none      &none      &none      &none      &none                           &kp LEFT      &kp DOWN      &kp UP     &kp RIGHT  &none      &none
+&none   &none      &none      &none      &none      &none      &trans  &trans       &none         &kp C_VOL_DN  &kp C_VOL_UP  &none      &none      &none
+&trans  &trans     &trans     &trans     &trans     &trans                          &trans        &trans        &trans     &trans     &trans     &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -270,10 +282,10 @@
             //                    |         |         |         |         |         | |      |      |      |       |      |
 
             bindings = <
-&bt BT_CLR      &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &none   &none  &none   &none  &none             &none
-&none           &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4                  &tog 1  &to 0  &none   &none  &none             &tog 1
-&bt BT_CLR_ALL  &none          &none          &none          &none          &none          &trans  &trans  &none   &none  &none   &none  &ext_power EP_ON  &kp CAPSLOCK
-&none           &none          &none          &none          &none          &none                          &none   &none  &kp N4  &none  &none             &none
+&bt BT_CLR      &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &kp F6  &kp F7  &kp F8  &kp F9  &kp F10           &kp F11
+&none           &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4                  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5            &kp F12
+&bt BT_CLR_ALL  &none          &none          &none          &none          &none          &trans  &trans  &none   &none   &none   &none   &ext_power EP_ON  &kp CAPSLOCK
+&none           &none          &none          &none          &none          &none                          &none   &none   &kp N4  &none   &none             &none
             >;
         };
 

@@ -17,12 +17,14 @@ include:
     shield: cornix_dongle_adapter cornix_dongle_eyelash dongle_display
     snippet: studio-rpc-usb-uart nrf52840-nosd
     artifact-name: cornix_dongle_nosd
-  # dongle screen not yet supports zephyr4
-  # - board: seeeduino_xiao_ble
-  #   shield: cornix_dongle_adapter dongle_screen
-  #   snippet: studio-rpc-usb-uart
-  #   artifact-name: cornix_dongle_zds_see
-  # - board: nice_nano
+  # Prospector(Seeed XIAO nRF52840 + ST7789)= central + YADS画面
+  # ZMK main は Zephyr4 のため board は xiao_ble//zmk(旧 seeeduino_xiao_ble)
+  - board: xiao_ble//zmk
+    shield: cornix_dongle_adapter dongle_screen
+    snippet: studio-rpc-usb-uart
+    artifact-name: cornix_dongle_prospector
+  # 参考: nice!nano をドングルにする場合の YADS 版(未使用)
+  # - board: nice_nano//zmk
   #   shield: cornix_dongle_adapter dongle_screen
   #   snippet: studio-rpc-usb-uart
   #   artifact-name: cornix_dongle_zds_nano

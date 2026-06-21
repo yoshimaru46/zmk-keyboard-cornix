@@ -45,10 +45,10 @@ include:
     snippet: studio-rpc-usb-uart nrf52840-nosd
     artifact-name: cornix_reset
 
-  - board: cornix_ph_left
+  - board: xiao_ble//zmk
     shield: settings_reset
     snippet: studio-rpc-usb-uart nrf52840-nosd
-    artifact-name: cornix_ph_left_reset
+    artifact-name: cornix_dongle_reset
 
   - board: nice_nano/nrf52840/zmk
     shield: settings_reset

@@ -21,8 +21,8 @@ include:
   # ZMK main は Zephyr4 のため board は xiao_ble//zmk(旧 seeeduino_xiao_ble)
   - board: xiao_ble//zmk
     shield: cornix_dongle_adapter dongle_screen
-    snippet: studio-rpc-usb-uart
-    artifact-name: cornix_dongle_prospector
+    snippet: studio-rpc-usb-uart nrf52840-nosd
+    artifact-name: cornix_dongle_prospector_nosd
   # 参考: nice!nano をドングルにする場合の YADS 版(未使用)
   # - board: nice_nano//zmk
   #   shield: cornix_dongle_adapter dongle_screen
@@ -44,6 +44,11 @@ include:
     shield: settings_reset
     snippet: studio-rpc-usb-uart nrf52840-nosd
     artifact-name: cornix_reset
+
+  - board: xiao_ble//zmk
+    shield: settings_reset
+    snippet: studio-rpc-usb-uart nrf52840-nosd
+    artifact-name: cornix_dongle_reset
 
   - board: nice_nano/nrf52840/zmk
     shield: settings_reset

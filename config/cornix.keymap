@@ -212,6 +212,14 @@
             layers = <0>;
             timeout-ms = <40>;
         };
+
+        // , + . 同時押しで ?（Shift 不要・base 限定）
+        qmark {
+            bindings = <&kp QMARK>;
+            key-positions = <34 35>;
+            layers = <0>;
+            timeout-ms = <40>;
+        };
     };
 
     keymap {

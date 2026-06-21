@@ -20,10 +20,9 @@
 #define HM_TAPPING_TERM_FAST 200
 #define HM_PRIOR_IDLE 70
 #define BASE 0
-#define WIN 1
-#define LOWER 2
-#define RAISE 3
-#define ADJUST 4
+#define LOWER 1
+#define RAISE 2
+#define ADJUST 3
 
 // https://github.com/urob/zmk-config/tree/main#timeless-homerow-mods
 
@@ -170,8 +169,8 @@
         compatible = "zmk,conditional-layers";
 
         adjust_layer {
-            if-layers = <3 2>;
-            then-layer = <4>;
+            if-layers = <2 1>;
+            then-layer = <3>;
         };
     };
 
@@ -181,19 +180,19 @@
         cb_ltm {
             bindings = <&kp ESC>;
             key-positions = <2 4>;
-            layers = <0 1>;
+            layers = <0>;
         };
 
         cb_lm {
             bindings = <&kp TAB>;
             key-positions = <14 16>;
-            layers = <0 1>;
+            layers = <0>;
         };
 
         cb_enter {
             bindings = <&kp RET>;
             key-positions = <21 19>;
-            layers = <0 1>;
+            layers = <0>;
         };
 
         layer3 {
@@ -210,7 +209,7 @@
         caps_word {
             bindings = <&caps_word>;
             key-positions = <16 19>;
-            layers = <0 1>;
+            layers = <0>;
             timeout-ms = <40>;
         };
     };
@@ -232,26 +231,7 @@
 &kp ESC       &kp Q  &kp W  &kp E     &kp R  &kp T                                  &kp Y           &kp U  &kp I      &kp O    &kp P     &key_repeat
 &omt LALT TAB &kp A  &kp S  &kp D     &kp F  &kp G                                  &kp H           &kp J  &kp K      &kp L    &kp SEMI  &bs_del
 &kp LSHFT     &kp Z  &kp X  &kp C     &kp V  &kp B               &none  &none       &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp SQT
-&none         &none  &none  &kp LGUI  &mo 2  &tmt LCTRL SPACE                       &tmt LSHFT RET  &mo 3  &kp RGUI   &none    &none     &none
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        win_layer {
-            display-name = "Windows";
-
-            // ------------------------------------------------------------------------------------------------------------
-            // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
-            // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
-            // |  TAB  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-            //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
-
-            bindings = <
-&trans    &trans         &trans        &trans         &trans               &trans                  &trans  &trans               &trans         &trans        &trans            &trans
-&trans    &hm_l LCTRL A  &hm_l LALT S  &hm_l LCTRL D  &hm_shift_l LSHFT F  &trans                  &trans  &hm_shift_r RSHFT J  &hm_r RCTRL K  &hm_r RALT L  &hm_r RCTRL SEMI  &trans
-&kp LGUI  &trans         &trans        &trans         &trans               &trans  &trans  &trans  &trans  &trans               &trans         &trans        &trans            &trans
-&none     &none          &none         &trans         &trans               &trans                  &trans  &trans               &trans         &none         &none             &none
+&none         &none  &none  &kp LGUI  &mo 1  &tmt LCTRL SPACE                       &tmt LSHFT RET  &mo 2  &kp RGUI   &none    &none     &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };

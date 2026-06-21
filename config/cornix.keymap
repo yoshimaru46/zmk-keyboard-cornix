@@ -230,7 +230,7 @@
             bindings = <
 &kp ESC       &kp Q  &kp W  &kp E     &kp R  &kp T                                  &kp Y           &kp U  &kp I      &kp O    &kp P     &key_repeat
 &omt LALT TAB &kp A  &kp S  &kp D     &kp F  &kp G                                  &kp H           &kp J  &kp K      &kp L    &kp SEMI  &bs_del
-&sk LSHFT     &kp Z  &kp X  &kp C     &kp V  &kp B               &none  &none       &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp SQT
+&kp LSHFT     &kp Z  &kp X  &kp C     &kp V  &kp B               &none  &none       &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp SQT
 &none         &none  &none  &kp LGUI  &mo 1  &tmt LCTRL SPACE                       &tmt LSHFT RET  &mo 2  &kp RGUI   &none    &none     &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;

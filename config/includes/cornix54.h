@@ -73,10 +73,10 @@
 #define RH2 46
 #define RH3 31
 
-#define LP0 40  // left-palm keys
-#define LP1 41
-#define LP2 42
+#define LP0 40  // left-palm keys (innermost, closest to encoder)
+#define LP1 39
+#define LP2 38
 
-#define RP0 49  // right-paml keys
-#define RP1 50
-#define RP2 51
+#define RP0 47  // right-palm keys (innermost, closest to encoder)
+#define RP1 48
+#define RP2 49

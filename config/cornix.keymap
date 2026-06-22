@@ -9,21 +9,17 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
 
 // lt（レイヤータップ）用の tapping term
 #define HM_TAPPING_TERM 250
 
-#define BASE 0
-#define LOWER 1
-#define RAISE 2
+#define BASE   0
+#define SYMBOL 1
+#define MIX    2
 #define ADJUST 3
 
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 15
-
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/pointing.h>
 
 / {
     // Activate ADJUST layer by pressing raise and lower
@@ -37,6 +33,7 @@
             flavor = "hold-preferred";
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
         };
 
         // 親指 Ctrl/Space・Shift/Enter 用: 誤爆対策版 mod-tap
@@ -101,16 +98,6 @@
             bindings = <&kp RET>;
             key-positions = <21 19>;
             layers = <0>;
-        };
-
-        layer3 {
-            bindings = <&kp N3>;
-            key-positions = <5 6>;
-        };
-
-        layer4 {
-            bindings = <&kp N4>;
-            key-positions = <5 6>;
         };
 
         // F + J 同時押しで Caps Word(連続大文字、スペース等で自動解除）
@@ -197,8 +184,9 @@
 &bt BT_CLR      &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &kp F6  &kp F7  &kp F8  &kp F9  &kp F10           &kp F11
 &none           &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4                  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5            &kp F12
 &bt BT_CLR_ALL  &none          &none          &none          &none          &none          &trans  &trans  &none   &none   &none   &none   &none             &bootloader
-&none           &none          &none          &none          &none          &none                          &none   &none   &none        &none   &none             &none
+&none           &none          &none          &none          &none          &none                          &none   &none   &none   &none   &none             &none
             >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
     };
 };

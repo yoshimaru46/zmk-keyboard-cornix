@@ -7,3 +7,18 @@ result
 target
 
 firmware
+
+# west / nix build outputs
+compile_commands.json
+
+# west-managed dependencies (fetched by `just init` / `west update`)
+/.west/
+/zmk/
+/zmk-helpers/
+/zmk-dongle-display/
+/zmk-dongle-screen/
+/modules/
+/optional/
+/zephyr/
+# keep the repo's board_root marker which lives alongside the fetched Zephyr tree
+!/zephyr/module.yml

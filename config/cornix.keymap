@@ -74,26 +74,47 @@
     combos {
         compatible = "zmk,combos";
 
-        // S + F 同時押しで TAB
-        cb_lm {
-            bindings = <&kp TAB>;
-            key-positions = <LM3 LM1>;
+        // --- 括弧ペア: 左手下段=開き / 右手下段=閉じ（内側から 丸→波→角・左右対称）---
+        // C + V 同時押しで (
+        cb_lpar {
+            bindings = <&kp LPAR>;
+            key-positions = <LB2 LB1>;
             layers = <0>;
         };
 
-        // J + L 同時押しで Enter
-        cb_enter {
-            bindings = <&kp RET>;
-            key-positions = <RM3 RM1>;
+        // M + , 同時押しで )
+        cb_rpar {
+            bindings = <&kp RPAR>;
+            key-positions = <RB1 RB2>;
             layers = <0>;
         };
 
-        // F + J 同時押しで Caps Word(連続大文字、スペース等で自動解除）
-        caps_word {
-            bindings = <&caps_word>;
-            key-positions = <LM1 RM1>;
+        // X + C 同時押しで {
+        cb_lbrc {
+            bindings = <&kp LBRC>;
+            key-positions = <LB3 LB2>;
             layers = <0>;
-            timeout-ms = <40>;
+        };
+
+        // , + . 同時押しで }
+        cb_rbrc {
+            bindings = <&kp RBRC>;
+            key-positions = <RB2 RB3>;
+            layers = <0>;
+        };
+
+        // Z + X 同時押しで [
+        cb_lbkt {
+            bindings = <&kp LBKT>;
+            key-positions = <LB4 LB3>;
+            layers = <0>;
+        };
+
+        // . + / 同時押しで ]
+        cb_rbkt {
+            bindings = <&kp RBKT>;
+            key-positions = <RB3 RB4>;
+            layers = <0>;
         };
     };
 

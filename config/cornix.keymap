@@ -74,7 +74,21 @@
     combos {
         compatible = "zmk,combos";
 
-        // --- 括弧ペア: 左手下段=開き / 右手下段=閉じ（内側から 丸→波→角・左右対称）---
+        // --- 括弧ペア: 左手下段=開き / 右手下段=閉じ（内側から 山→丸→波→角・左右対称）---
+        // V + B 同時押しで <
+        cb_lt {
+            bindings = <&kp LT>;
+            key-positions = <LB1 LB0>;
+            layers = <0>;
+        };
+
+        // N + M 同時押しで >
+        cb_gt {
+            bindings = <&kp GT>;
+            key-positions = <RB0 RB1>;
+            layers = <0>;
+        };
+
         // C + V 同時押しで (
         cb_lpar {
             bindings = <&kp LPAR>;

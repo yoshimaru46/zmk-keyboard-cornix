@@ -71,67 +71,6 @@
         };
     };
 
-    combos {
-        compatible = "zmk,combos";
-
-        // --- 括弧ペア: 左手下段=開き / 右手下段=閉じ（内側から 山→丸→波→角・左右対称）---
-        // V + B 同時押しで <
-        cb_lt {
-            bindings = <&kp LT>;
-            key-positions = <LB1 LB0>;
-            layers = <0>;
-        };
-
-        // N + M 同時押しで >
-        cb_gt {
-            bindings = <&kp GT>;
-            key-positions = <RB0 RB1>;
-            layers = <0>;
-        };
-
-        // C + V 同時押しで (
-        cb_lpar {
-            bindings = <&kp LPAR>;
-            key-positions = <LB2 LB1>;
-            layers = <0>;
-        };
-
-        // M + , 同時押しで )
-        cb_rpar {
-            bindings = <&kp RPAR>;
-            key-positions = <RB1 RB2>;
-            layers = <0>;
-        };
-
-        // X + C 同時押しで {
-        cb_lbrc {
-            bindings = <&kp LBRC>;
-            key-positions = <LB3 LB2>;
-            layers = <0>;
-        };
-
-        // , + . 同時押しで }
-        cb_rbrc {
-            bindings = <&kp RBRC>;
-            key-positions = <RB2 RB3>;
-            layers = <0>;
-        };
-
-        // Z + X 同時押しで [
-        cb_lbkt {
-            bindings = <&kp LBKT>;
-            key-positions = <LB4 LB3>;
-            layers = <0>;
-        };
-
-        // . + / 同時押しで ]
-        cb_rbkt {
-            bindings = <&kp RBKT>;
-            key-positions = <RB3 RB4>;
-            layers = <0>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 

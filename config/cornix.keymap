@@ -90,7 +90,7 @@
 &kp LSHFT     &kp Z  &kp X  &kp C          &kp V  &kp B               &none  &none       &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH      &kp SQT
 &none         &none  &none  &kp LGUI  &mo 1  &tmt LCTRL SPACE                       &tmt LSHFT RET  &mo 2  &kp RGUI   &none    &none     &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         Symbol_layer {
@@ -109,7 +109,7 @@
 &none   &none     &none   &kp PIPE  &kp TILDE  &none      &trans  &trans  &kp GT     &kp UNDER  &kp KP_PLUS  &kp LBKT  &kp RBKT  &none
 &trans  &trans    &trans  &trans    &trans     &trans                     &trans     &trans     &trans       &trans    &trans    &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         Mix_layer {
@@ -118,18 +118,17 @@
             // -----------------------------------------------------------------------------------------------------
             // |     |   1   |   2   |   3   |   4   |  5  |                |  6  |  7   |  8  |  9  |  0  |     |
             // |     | LineL | WordL | WordR | LineR |     |                | LFT | DWN  | UP  | RGT |     |     |
-            // |     | DelWd | DelLn |       |       |     |  ---  |  | --- |     | ⌃←  |  ⌃→ |     |     |     |
+            // |     | DelWd | DelLn |       |       |     |  ---  |  | --- |     | VOL- | VOL+|     |     |     |
             //                     |     |       |          |  |          |       |     |
             // LineL/R = ⌘←/→ (line start/end), WordL/R = ⌥←/→, DelWd = ⌥⌫, DelLn = ⌘⌫
-            // ⌃←/→ = move space (Mission Control); volume is on the encoder
 
             bindings = <
 &none   &kp KP_N1     &kp KP_N2     &kp KP_N3      &kp KP_N4      &kp KP_N5                  &kp KP_N6     &kp KP_N7     &kp KP_N8     &kp KP_N9  &kp KP_N0  &none
 &none   &kp LG(LEFT)  &kp LA(LEFT)  &kp LA(RIGHT)  &kp LG(RIGHT)  &none                      &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT  &none      &none
-&none   &kp LA(BSPC)  &kp LG(BSPC)  &none          &none          &none  &trans  &trans      &none         &kp LC(LEFT)  &kp LC(RIGHT) &none      &none      &none
+&none   &kp LA(BSPC)  &kp LG(BSPC)  &none          &none          &none  &trans  &trans      &none         &kp C_VOL_DN  &kp C_VOL_UP  &none      &none      &none
 &trans  &trans     &trans     &trans     &trans     &trans                          &trans        &trans        &trans     &trans     &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         Adjust_layer {
@@ -148,7 +147,7 @@
 &bt BT_CLR_ALL  &none          &none          &none          &none          &none          &trans  &trans  &none   &none   &none   &none   &none             &bootloader
 &none           &none          &none          &none          &none          &none                          &none   &none   &none   &none   &none             &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };

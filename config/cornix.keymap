@@ -80,14 +80,15 @@
             // -----------------------------------------------------------------------------------------------------
             // |  ESC  |  Q  |  W  |  E  |  R  |  T  |                |  Y  |  U  |  I  |  O  |   P   | REPEAT  |
             // | TAB*  |  A  |  S  |  D  |  F  |  G  |                |  H  |  J  |  K  |  L  |  ;/:  | BSPC/DEL|
-            // | SHIFT |  Z  |  X  |  C  |  V  |  B  |  ---  |  | --- |  N  |  M  |  ,  |  .  |   /   |    '    |
+            // | SHIFT |  Z  |  X  |  C  |  V  |  B  |  ⏯  |  |  🔇 |  N  |  M  |  ,  |  .  |   /   |    '    |
             //                     | GUI | LOWER | CTRL/SPC |  | SHFT/ENT | RAISE | GUI |
-            // TAB* = tap:TAB / hold:LALT,  ;/: = tap:: / shift:; ,  palm & inner-thumb keys unused
+            // TAB* = tap:TAB / hold:LALT,  ;/: = tap:: / shift:;
+            // エンコーダー押込: 左=⏯ 再生/一時停止, 右=🔇 ミュート
 
             bindings = <
 &kp ESC       &kp Q  &kp W  &kp E          &kp R  &kp T                                  &kp Y           &kp U  &kp I      &kp O    &kp P         &key_repeat
 &omt LALT TAB &kp A  &kp S  &kp D          &kp F  &kp G                                  &kp H           &kp J  &kp K      &kp L    &semi_colon   &bs_del
-&kp LSHFT     &kp Z  &kp X  &kp C          &kp V  &kp B               &none  &none       &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH      &kp SQT
+&kp LSHFT     &kp Z  &kp X  &kp C          &kp V  &kp B               &kp C_PP  &kp C_MUTE  &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH      &kp SQT
 &none         &none  &none  &kp LGUI  &mo 1  &tmt LCTRL SPACE                       &tmt LSHFT RET  &mo 2  &kp RGUI   &none    &none     &none
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;

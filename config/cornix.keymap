@@ -94,15 +94,16 @@
             // -----------------------------------------------------------------------------------------------------
             // |  ESC  |  Q  |  W  |  E  |  R  |  T  |                |  Y  |  U  |  I  |  O  |   P   | REPEAT  |
             // | TAB*  |  A  |  S  |  D  |  F  |  G  |                |  H  |  J  |  K  |  L  |  ;/:  | BSPC/DEL|
-            // | SHIFT |  Z  |  X  |  C  |  V  |  B  |  ---  |  | --- |  N  |  M  |  ,  |  .  |   /   |    '    |
+            // | SHIFT |  Z  |  X  |  C  |  V  |  B  |  ⏯  |  |  🔇 |  N  |  M  |  ,  |  .  |   /   |    '    |
             //                     | GUI/英数 | LOWER | CTRL/SPC |  | SHFT/ENT | RAISE | GUI/かな |
-            // TAB* = tap:TAB / hold:LALT,  ;/: = tap:: / shift:; ,  palm & inner-thumb keys unused
+            // TAB* = tap:TAB / hold:LALT,  ;/: = tap:: / shift:;
             // GUI/英数 = tap:英数(LANG2) / hold:LGUI,  GUI/かな = tap:かな(LANG1) / hold:RGUI
+            // エンコーダー押込: 左=⏯ 再生/一時停止, 右=🔇 ミュート
 
             bindings = <
 &kp ESC       &kp Q  &kp W  &kp E          &kp R  &kp T                                  &kp Y           &kp U  &kp I      &kp O    &kp P         &key_repeat
 &omt LALT TAB &kp A  &kp S  &kp D          &kp F  &kp G                                  &kp H           &kp J  &kp K      &kp L    &semi_colon   &bs_del
-&kp LSHFT     &kp Z  &kp X  &kp C          &kp V  &kp B               &none  &none       &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH      &kp SQT
+&kp LSHFT     &kp Z  &kp X  &kp C          &kp V  &kp B               &kp C_PP  &kp C_MUTE  &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH      &kp SQT
 &none         &none  &none  &gmt LGUI LANG2  &mo 1  &tmt LCTRL SPACE                &tmt LSHFT RET  &mo 2  &gmt RGUI LANG1  &none  &none   &none
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -121,7 +122,7 @@
             bindings = <
 &none   &kp EXCL  &kp AT  &kp HASH  &kp DLLR   &kp PRCNT                  &kp CARET  &kp AMPS   &kp ASTRK    &kp LBRC  &kp RBRC  &none
 &none   &none     &none   &kp BSLH  &kp GRAVE  &none                      &kp LT     &kp MINUS  &kp EQUAL    &kp LPAR  &kp RPAR  &none
-&none   &none     &none   &kp PIPE  &kp TILDE  &none      &trans  &trans  &kp GT     &kp UNDER  &kp KP_PLUS  &kp LBKT  &kp RBKT  &none
+&none   &none     &none   &kp PIPE  &kp TILDE  &none      &trans  &trans  &kp GT     &kp UNDER  &kp PLUS     &kp LBKT  &kp RBKT  &none
 &trans  &trans    &trans  &trans    &trans     &trans                     &trans     &trans     &trans       &trans    &trans    &trans
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -138,7 +139,7 @@
             // LineL/R = ⌘←/→ (line start/end), WordL/R = ⌥←/→, DelWd = ⌥⌫, DelLn = ⌘⌫
 
             bindings = <
-&none   &kp KP_N1     &kp KP_N2     &kp KP_N3      &kp KP_N4      &kp KP_N5                  &kp KP_N6     &kp KP_N7     &kp KP_N8     &kp KP_N9  &kp KP_N0  &none
+&none   &kp N1        &kp N2        &kp N3         &kp N4         &kp N5                     &kp N6        &kp N7        &kp N8        &kp N9     &kp N0     &none
 &none   &kp LG(LEFT)  &kp LA(LEFT)  &kp LA(RIGHT)  &kp LG(RIGHT)  &none                      &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT  &none      &none
 &none   &kp LA(BSPC)  &kp LG(BSPC)  &none          &none          &none  &trans  &trans      &none         &kp C_VOL_DN  &kp C_VOL_UP  &none      &none      &none
 &trans  &trans     &trans     &trans     &trans     &trans                          &trans        &trans        &trans     &trans     &trans     &trans

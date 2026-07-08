@@ -106,7 +106,7 @@
             bindings = <
 &none   &kp EXCL  &kp AT  &kp HASH  &kp DLLR   &kp PRCNT                  &kp CARET  &kp AMPS   &kp ASTRK    &kp LBRC  &kp RBRC  &none
 &none   &none     &none   &kp BSLH  &kp GRAVE  &none                      &kp LT     &kp MINUS  &kp EQUAL    &kp LPAR  &kp RPAR  &none
-&none   &none     &none   &kp PIPE  &kp TILDE  &none      &trans  &trans  &kp GT     &kp UNDER  &kp KP_PLUS  &kp LBKT  &kp RBKT  &none
+&none   &none     &none   &kp PIPE  &kp TILDE  &none      &trans  &trans  &kp GT     &kp UNDER  &kp PLUS     &kp LBKT  &kp RBKT  &none
 &trans  &trans    &trans  &trans    &trans     &trans                     &trans     &trans     &trans       &trans    &trans    &trans
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -123,7 +123,7 @@
             // LineL/R = ⌘←/→ (line start/end), WordL/R = ⌥←/→, DelWd = ⌥⌫, DelLn = ⌘⌫
 
             bindings = <
-&none   &kp KP_N1     &kp KP_N2     &kp KP_N3      &kp KP_N4      &kp KP_N5                  &kp KP_N6     &kp KP_N7     &kp KP_N8     &kp KP_N9  &kp KP_N0  &none
+&none   &kp N1        &kp N2        &kp N3         &kp N4         &kp N5                     &kp N6        &kp N7        &kp N8        &kp N9     &kp N0     &none
 &none   &kp LG(LEFT)  &kp LA(LEFT)  &kp LA(RIGHT)  &kp LG(RIGHT)  &none                      &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT  &none      &none
 &none   &kp LA(BSPC)  &kp LG(BSPC)  &none          &none          &none  &trans  &trans      &none         &kp C_VOL_DN  &kp C_VOL_UP  &none      &none      &none
 &trans  &trans     &trans     &trans     &trans     &trans                          &trans        &trans        &trans     &trans     &trans     &trans

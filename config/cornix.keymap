@@ -133,14 +133,15 @@
 
             // -----------------------------------------------------------------------------------------------------
             // |     |   1   |   2   |   3   |   4   |  5  |                |  6  |  7   |  8  |  9  |  0  |     |
-            // |     | LineL | WordL | WordR | LineR |     |                | LFT | DWN  | UP  | RGT |     |     |
+            // |     |       |       | LHalf | RHalf | Max |                | LFT | DWN  | UP  | RGT |     |     |
             // |     | DelWd | DelLn |       |       |     |  ---  |  | --- |     | VOL- | VOL+|     |     |     |
             //                     |     |       |          |  |          |       |     |
-            // LineL/R = ⌘←/→ (line start/end), WordL/R = ⌥←/→, DelWd = ⌥⌫, DelLn = ⌘⌫
+            // DelWd = ⌥⌫, DelLn = ⌘⌫
+            // LHalf/RHalf/Max = ⌃⌥←/→/⏎ (Raycast Window Management: Left/Right Half, Maximize)
 
             bindings = <
 &none   &kp N1        &kp N2        &kp N3         &kp N4         &kp N5                     &kp N6        &kp N7        &kp N8        &kp N9     &kp N0     &none
-&none   &kp LG(LEFT)  &kp LA(LEFT)  &kp LA(RIGHT)  &kp LG(RIGHT)  &none                      &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT  &none      &none
+&none   &none         &none         &kp LC(LA(LEFT))  &kp LC(LA(RIGHT))  &kp LC(LA(RET))            &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT  &none      &none
 &none   &kp LA(BSPC)  &kp LG(BSPC)  &none          &none          &none  &trans  &trans      &none         &kp C_VOL_DN  &kp C_VOL_UP  &none      &none      &none
 &trans  &trans     &trans     &trans     &trans     &trans                          &trans        &trans        &trans     &trans     &trans     &trans
             >;

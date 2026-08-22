@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/urob
     - name: janpfischer
       url-base: https://github.com/janpfischer
+    - name: yoshimaru46-fork
+      url-base: https://github.com/yoshimaru46
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -30,8 +32,8 @@ manifest:
       revision: main
       clone-depth: 1
     - name: zmk-dongle-screen
-      remote: janpfischer
-      revision: upgrade-4.1   # ZMK main(Zephyr4)用。mainブランチは0.3.0用なので不可
+      remote: yoshimaru46-fork
+      revision: add-key-status-widget   # janpfischer/upgrade-4.1 (ZMK main/Zephyr4用) + 押下キー表示ウィジェット
       clone-depth: 1
   self:
     path: config

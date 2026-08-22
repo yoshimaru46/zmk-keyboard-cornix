@@ -22,3 +22,6 @@ compile_commands.json
 /zephyr/
 # keep the repo's board_root marker which lives alongside the fetched Zephyr tree
 !/zephyr/module.yml
+
+# 作業計画メモ（ローカルのみ）
+/plans/

@@ -9,14 +9,11 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/pointing.h>
 
 #define BASE   0
 #define SYMBOL 1
 #define MIX    2
 #define ADJUST 3
-
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 15
 
 / {
     // Activate ADJUST layer by pressing raise and lower
@@ -84,7 +81,8 @@
             //                     |  GUI  | LOWER | CTRL/SPC |  | SHFT/ENT | RAISE |  GUI  |
             // TAB* = tap:TAB / hold:LALT,  ;/: = tap:: / shift:;
             // 英数/かなの切替は Karabiner 側（⌘単独押し: 左⌘=英数 / 右⌘=かな）で行う
-            // エンコーダー押込: 左=⏯ 再生/一時停止, 右=🔇 ミュート
+            // エンコーダー 左: 回転=曲送り/曲戻し, 押込=⏯ 再生/一時停止
+            // エンコーダー 右: 回転=音量+/-,      押込=🔇 ミュート
 
             bindings = <
 &kp ESC       &kp Q  &kp W  &kp E          &kp R  &kp T                                  &kp Y           &kp U  &kp I      &kp O    &kp P         &key_repeat
@@ -92,7 +90,7 @@
 &kp LSHFT     &kp Z  &kp X  &kp C          &kp V  &kp B               &kp C_PP  &kp C_MUTE  &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH      &kp SQT
 &none         &none  &none  &kp LGUI        &mo 1  &tmt LCTRL SPACE                &tmt LSHFT RET  &mo 2  &kp RGUI        &none  &none   &none
             >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         Symbol_layer {
@@ -111,7 +109,7 @@
 &none   &none     &none   &kp PIPE  &kp TILDE  &none      &trans  &trans  &kp GT     &kp UNDER  &kp PLUS     &kp LBKT  &kp RBKT  &none
 &trans  &trans    &trans  &trans    &trans     &trans                     &trans     &trans     &trans       &trans    &trans    &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         Mix_layer {
@@ -131,7 +129,7 @@
 &none   &kp LA(BSPC)  &kp LG(BSPC)  &none          &kp LC(LA(RET))  &none  &trans  &trans      &none         &kp C_VOL_DN  &kp C_VOL_UP  &none      &none      &none
 &trans  &trans     &trans     &trans     &trans     &trans                          &trans        &trans        &trans     &trans     &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         Adjust_layer {
@@ -150,7 +148,7 @@
 &bt BT_CLR_ALL  &none          &none          &none          &none          &none          &trans  &trans  &none   &none   &none   &none   &none             &bootloader
 &none           &none          &none          &none          &none          &none                          &none   &none   &none   &none   &none             &none
             >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };

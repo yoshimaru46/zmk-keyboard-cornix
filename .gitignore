@@ -17,6 +17,7 @@ compile_commands.json
 /zmk-helpers/
 /zmk-dongle-display/
 /zmk-dongle-screen/
+/zmk-module-*/
 /modules/
 /optional/
 /zephyr/

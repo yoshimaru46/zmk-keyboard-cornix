@@ -35,8 +35,8 @@ nix develop --command west build -s zmk/app -d .build/dongle -b "xiao_ble//zmk" 
 |---|---|---|---|
 | dongle_prospector | `xiao_ble//zmk` | `cornix_dongle_adapter dongle_screen` | `studio-rpc-usb-uart nrf52840-nosd` |
 | dongle (nice!nano) | `nice_nano/nrf52840/zmk` | `cornix_dongle_adapter cornix_dongle_eyelash dongle_display` | `studio-rpc-usb-uart nrf52840-nosd` |
-| left | `cornix_left` | （なし＝`-DSHIELD` 省略） | （省略） |
-| right | `cornix_right` | （なし＝`-DSHIELD` 省略） | （省略） |
+| left | `cornix_left//zmk` | （なし＝`-DSHIELD` 省略） | （省略） |
+| right | `cornix_right//zmk` | （なし＝`-DSHIELD` 省略） | （省略） |
 
 `cornix.keymap` は自動探索されるため `-DKEYMAP` 不要。全一覧は `build.yaml`。
 

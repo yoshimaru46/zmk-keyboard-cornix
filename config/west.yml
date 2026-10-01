@@ -12,6 +12,8 @@ manifest:
       url-base: https://github.com/janpfischer
     - name: yoshimaru46-fork
       url-base: https://github.com/yoshimaru46
+    - name: cormoran
+      url-base: https://github.com/cormoran
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -34,6 +36,23 @@ manifest:
     - name: zmk-dongle-screen
       remote: yoshimaru46-fork
       revision: add-key-status-widget   # janpfischer/upgrade-4.1 (ZMK main/Zephyr4用) + 押下キー表示ウィジェット
+      clone-depth: 1
+    # DYA Studio extensions. ZMK Studio remains enabled as the shared RPC transport.
+    - name: zmk-module-ble-management
+      remote: cormoran
+      revision: main
+      clone-depth: 1
+    - name: zmk-module-battery-history
+      remote: cormoran
+      revision: main
+      clone-depth: 1
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+      revision: main
+      clone-depth: 1
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: main
       clone-depth: 1
   self:
     path: config

@@ -76,8 +76,8 @@ cp .build/dongle/zephyr/zmk.uf2 firmware/cornix_dongle_prospector_nosd.uf2
 |---|---|---|
 | `cornix_dongle_prospector_nosd` | `xiao_ble//zmk` | `cornix_dongle_adapter dongle_screen` |
 | `cornix_dongle_nosd` | `nice_nano/nrf52840/zmk` | `cornix_dongle_adapter cornix_dongle_eyelash dongle_display` |
-| `cornix_left_default_nosd` | `cornix_left` | （なし） |
-| `cornix_right_nosd` | `cornix_right` | （なし） |
+| `cornix_left_default_nosd` | `cornix_left//zmk` | （なし） |
+| `cornix_right_nosd` | `cornix_right//zmk` | （なし） |
 
 ボード単体（シールドなし）ターゲットは `-DSHIELD` を省略する。
 

@@ -12,7 +12,7 @@
 #include <zephyr/devicetree.h>
 
 static int pinmux_cornix_init(void) {
-#if (CONFIG_BOARD_CORNIX)
+#if (CONFIG_BOARD_CORNIX_LEFT || CONFIG_BOARD_CORNIX_RIGHT || CONFIG_BOARD_CORNIX_PH_LEFT)
     const struct device *p0 = DEVICE_DT_GET(DT_NODELABEL(gpio0));
 #if CONFIG_BOARD_CORNIX_CHARGER
     gpio_pin_configure(p0, 5, GPIO_OUTPUT);

@@ -14,6 +14,8 @@ manifest:
       url-base: https://github.com/yoshimaru46
     - name: cormoran
       url-base: https://github.com/cormoran
+    - name: zzeneg
+      url-base: https://github.com/zzeneg
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -35,7 +37,12 @@ manifest:
       clone-depth: 1
     - name: zmk-dongle-screen
       remote: yoshimaru46-fork
-      revision: add-key-status-widget   # janpfischer/upgrade-4.1 (ZMK main/Zephyr4用) + 押下キー表示ウィジェット
+      revision: add-agent-status-widget   # janpfischer/upgrade-4.1 (ZMK main/Zephyr4用) + 押下キー表示・エージェント状態ウィジェット
+      clone-depth: 1
+    # herdr のエージェント状態を Mac から受け取る Raw HID(受信側は zmk-dongle-screen の agent ウィジェット)
+    - name: zmk-raw-hid
+      remote: zzeneg
+      revision: main
       clone-depth: 1
     # DYA Studio extensions. ZMK Studio remains enabled as the shared RPC transport.
     - name: zmk-module-ble-management

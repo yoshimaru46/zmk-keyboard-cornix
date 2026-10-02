@@ -2,7 +2,7 @@
 // パケット仕様は zmk-dongle-screen の src/widgets/agent_status.c を参照。
 //
 //   swiftc -O -swift-version 5 -o herdr-status main.swift
-//   ./herdr-status            # 常駐して 2 秒ごとに送信
+//   ./herdr-status            # 常駐して 1 秒ごとに送信
 //   ./herdr-status --print    # 送信せず、送る内容を 1 回だけ表示
 
 import Foundation
@@ -17,7 +17,7 @@ let reportSize = 32
 let rowCount = 4
 let stateLength = 6
 let nameLength = 23
-let interval: TimeInterval = 2
+let interval: TimeInterval = 1
 
 enum Status: UInt8 {
     case none = 0, idle, working, blocked, done, unknown
@@ -102,8 +102,10 @@ func stateText(_ agent: Agent, now: Date) -> String {
     case .done: return "done"
     case .idle: return "idle"
     case .working:
-        let minutes = Int(now.timeIntervalSince(agent.since)) / 60
-        return minutes < 60 ? "\(minutes)m" : String(format: "%dh%02d", minutes / 60, minutes % 60)
+        let seconds = Int(now.timeIntervalSince(agent.since))
+        let minutes = seconds / 60
+        if minutes >= 60 { return String(format: "%dh%02d", minutes / 60, minutes % 60) }
+        return minutes > 0 ? String(format: "%dm%02ds", minutes, seconds % 60) : "\(seconds)s"
     default: return "?"
     }
 }

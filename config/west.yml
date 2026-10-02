@@ -37,7 +37,7 @@ manifest:
       clone-depth: 1
     - name: zmk-dongle-screen
       remote: yoshimaru46-fork
-      revision: add-agent-status-widget   # janpfischer/upgrade-4.1 (ZMK main/Zephyr4用) + 押下キー表示・エージェント状態ウィジェット
+      revision: cornix   # janpfischer/upgrade-4.1 (ZMK main/Zephyr4用) に自前ウィジェットを載せた統合ブランチ
       clone-depth: 1
     # herdr のエージェント状態を Mac から受け取る Raw HID(受信側は zmk-dongle-screen の agent ウィジェット)
     - name: zmk-raw-hid

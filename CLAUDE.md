@@ -15,3 +15,8 @@
 ## リポジトリ運用
 
 - PR は `gh pr create --repo yoshimaru46/zmk-keyboard-cornix` と明示し、フォーク元へ誤送しない
+
+## 実機は 2 台運用
+
+- 1 台はドングル経由（左 `cornix_ph_left` + 右 `cornix_right` + ドングル）、もう 1 台は Bluetooth 直結（左 `cornix_left` + 右 `cornix_right`）
+- 書き込み前に、対象がどちらの台・どちら側かを必ず確認する（ブートローダーのドライブ名は左右・台とも同じ `cornix` で判別できない）

@@ -65,7 +65,8 @@ func herdrPath() -> String {
     return candidates.first { FileManager.default.isExecutableFile(atPath: $0) } ?? "herdr"
 }
 
-func fetchAgents() -> [Agent] {
+// 取得に失敗したときは nil(0 件の [] と区別する)
+func fetchAgents() -> [Agent]? {
     let process = Process()
     let pipe = Pipe()
     process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
@@ -73,7 +74,7 @@ func fetchAgents() -> [Agent] {
     process.standardOutput = pipe
     process.standardError = FileHandle.nullDevice
 
-    guard (try? process.run()) != nil else { return [] }
+    guard (try? process.run()) != nil else { return nil }
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
     process.waitUntilExit()
 
@@ -81,7 +82,7 @@ func fetchAgents() -> [Agent] {
         let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
         let result = json["result"] as? [String: Any],
         let agents = result["agents"] as? [[String: Any]]
-    else { return [] }
+    else { return nil }
 
     return agents.compactMap { agent in
         guard let pane = agent["pane_id"] as? String else { return nil }
@@ -130,12 +131,14 @@ var tracked: [String: Agent] = [:]
 var firstPoll = true
 
 // 状態が変わっていない間は since を引き継ぎ、経過時間を出せるようにする
-func poll() -> (rows: [Row], count: Int, hidden: Int, wake: Bool) {
+func poll() -> (rows: [Row], count: Int, hidden: Int, wake: Bool)? {
     let now = Date()
     var wake = false
     var next: [String: Agent] = [:]
 
-    for var agent in fetchAgents() {
+    // 一時的な失敗で経過時間を失わないよう tracked は触らない
+    guard let agents = fetchAgents() else { return nil }
+    for var agent in agents {
         if let previous = tracked[agent.pane], previous.status == agent.status {
             agent.since = previous.since
         } else if agent.status == .blocked || agent.status == .done {
@@ -158,7 +161,10 @@ func poll() -> (rows: [Row], count: Int, hidden: Int, wake: Bool) {
 }
 
 if CommandLine.arguments.contains("--print") {
-    let result = poll()
+    guard let result = poll() else {
+        FileHandle.standardError.write("herdr agent list failed\n".data(using: .utf8)!)
+        exit(1)
+    }
     for row in result.rows where row.status != .none {
         print("\(row.status)".padding(toLength: 8, withPad: " ", startingAt: 0),
               row.name.padding(toLength: nameLength, withPad: " ", startingAt: 0), row.state)
@@ -195,7 +201,8 @@ func send(_ packets: [[UInt8]]) {
 }
 
 func tick() {
-    let result = poll()
+    // 送らなければドングル側が途絶を検知して offline 表示にする
+    guard let result = poll() else { return }
     // META が行より先に届くと空の一覧が一瞬出るため、行を先に送る
     send(result.rows.enumerated().map { rowPacket(index: $0.offset, row: $0.element) }
         + [metaPacket(count: result.count, hidden: result.hidden, wake: result.wake)])

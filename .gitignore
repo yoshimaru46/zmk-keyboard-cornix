@@ -17,7 +17,6 @@ compile_commands.json
 /zmk-helpers/
 /zmk-dongle-display/
 /zmk-dongle-screen/
-/zmk-raw-hid/
 /zmk-module-*/
 /modules/
 /optional/
@@ -27,6 +26,3 @@ compile_commands.json
 
 # 作業計画メモ（ローカルのみ）
 /plans/
-
-# tools のビルド成果物
-/tools/herdr-status/herdr-status

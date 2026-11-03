@@ -1,4 +1,4 @@
-// herdr のエージェント状態を Cornix ドングルへ Raw HID で送る常駐プログラム。
+// herdr-app(herdr-core / hc)のエージェント状態を Cornix ドングルへ Raw HID で送る常駐プログラム。
 // パケット仕様は zmk-dongle-screen の src/widgets/agent_status.c を参照。
 //
 //   swiftc -O -swift-version 5 -o herdr-status main.swift
@@ -56,21 +56,22 @@ struct Row: Equatable {
     var name = ""
 }
 
-func herdrPath() -> String {
-    if let path = ProcessInfo.processInfo.environment["HERDR_BIN"] {
+func hcPath() -> String {
+    if let path = ProcessInfo.processInfo.environment["HC_BIN"] {
         return path
     }
     let home = FileManager.default.homeDirectoryForCurrentUser.path
-    let candidates = ["\(home)/.local/bin/herdr", "/opt/homebrew/bin/herdr", "/usr/local/bin/herdr"]
-    return candidates.first { FileManager.default.isExecutableFile(atPath: $0) } ?? "herdr"
+    let candidates = ["\(home)/.local/bin/hc", "/opt/homebrew/bin/hc", "/usr/local/bin/hc"]
+    return candidates.first { FileManager.default.isExecutableFile(atPath: $0) } ?? "hc"
 }
 
+// herdr-app のターミナルは herdr-core(hc)が持つ。status があるものがエージェント。
 // 取得に失敗したときは nil(0 件の [] と区別する)
 func fetchAgents() -> [Agent]? {
     let process = Process()
     let pipe = Pipe()
     process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-    process.arguments = [herdrPath(), "agent", "list"]
+    process.arguments = [hcPath(), "ls", "--json"]
     process.standardOutput = pipe
     process.standardError = FileHandle.nullDevice
 
@@ -80,20 +81,23 @@ func fetchAgents() -> [Agent]? {
 
     guard
         let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-        let result = json["result"] as? [String: Any],
-        let agents = result["agents"] as? [[String: Any]]
+        let terminals = json["terminals"] as? [[String: Any]]
     else { return nil }
 
-    return agents.compactMap { agent in
-        guard let pane = agent["pane_id"] as? String else { return nil }
-        let cwd = agent["cwd"] as? String ?? ""
+    return terminals.compactMap { terminal in
+        guard
+            let pane = terminal["address"] as? String,
+            let status = terminal["status"] as? String
+        else { return nil }
+        let cwd = terminal["cwd"] as? String ?? ""
         let repo = URL(fileURLWithPath: cwd).lastPathComponent
-        let branch = (agent["tokens"] as? [String: Any])?["branch"] as? String ?? ""
-        let showBranch = !branch.isEmpty && branch != "main" && branch != "master"
+        // hc ls にはブランチが無いので、worktree ごとに付くスペース名で見分ける
+        let space = (terminal["where"] as? String ?? "").components(separatedBy: " / ")[0]
+        let showSpace = !space.isEmpty && space != repo
         return Agent(
             pane: pane,
-            status: Status(herdr: agent["agent_status"] as? String ?? ""),
-            name: showBranch ? "\(repo.prefix(10)) \(branch)" : repo)
+            status: Status(herdr: status),
+            name: showSpace ? "\(repo.prefix(10)) \(space)" : repo)
     }
 }
 
@@ -162,7 +166,7 @@ func poll() -> (rows: [Row], count: Int, hidden: Int, wake: Bool)? {
 
 if CommandLine.arguments.contains("--print") {
     guard let result = poll() else {
-        FileHandle.standardError.write("herdr agent list failed\n".data(using: .utf8)!)
+        FileHandle.standardError.write("hc ls failed\n".data(using: .utf8)!)
         exit(1)
     }
     for row in result.rows where row.status != .none {

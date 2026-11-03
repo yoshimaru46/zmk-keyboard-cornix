@@ -1,6 +1,6 @@
 # herdr-status
 
-herdr のエージェント状態を Cornix ドングルの画面へ Raw HID で送る Mac 側の常駐プログラム。
+herdr-app（herdr-core / `hc`）のエージェント状態を Cornix ドングルの画面へ Raw HID で送る Mac 側の常駐プログラム。
 受信側は zmk-dongle-screen の agent ウィジェット（`config/dongle_screen.conf` の
 `CONFIG_DONGLE_SCREEN_AGENT_ACTIVE=y`）。
 
@@ -23,7 +23,7 @@ launchctl print gui/$(id -u)/com.yoshimaru46.herdr-status | grep state
 tail ~/Library/Logs/herdr-status.log               # 送信エラー
 ```
 
-herdr が `~/.local/bin`・Homebrew 以外にある場合は環境変数 `HERDR_BIN` で指定する
+`hc` が `~/.local/bin`・Homebrew 以外にある場合は環境変数 `HC_BIN` で指定する
 （LaunchAgent 経由で使うなら plist に `EnvironmentVariables` を足す）。
 
 ## 削除

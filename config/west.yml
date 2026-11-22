@@ -14,25 +14,49 @@ manifest:
       url-base: https://github.com/yoshimaru46
     - name: cormoran
       url-base: https://github.com/cormoran
+  # zephyr を自前で import すると zephyr 側の -optional が勝ちうるため、ZMK と同じ指定を明示する
+  group-filter: [+optional]
+  # SHA で固定した project に clone-depth を付けない。west は SHA を浅く取得できず、上流が進むと失敗する
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
-      clone-depth: 1
+      revision: 4de313367288aad5aeaa1243890e40dc813f7008
       import:
         file: app/west.yml
+    # ZMK はブランチ名で Zephyr を指すため、ここで固定する。
+    # hal_stm32・lvgl は ZMK の fork を優先するので zmk より後に置く。blocklist は ZMK の app/west.yml と揃える
+    - name: zephyr
+      remote: zmkfirmware
+      revision: 10ba6d0cb38bc3d258775d27982f707599320085
+      import:
+        name-blocklist:
+          - ci-tools
+          - hal_altera
+          - hal_cypress
+          - hal_infineon
+          - hal_microchip
+          - hal_nxp
+          - hal_openisa
+          - hal_xtensa
+          - hal_st
+          - hal_ti
+          - loramac-node
+          - mcuboot
+          - mcumgr
+          - net-tools
+          - openthread
+          - edtt
+          - trusted-firmware-m
     - name: zmk-helpers
       remote: urob
-      revision: main
-      clone-depth: 1
+      revision: 7bcba18fc8df27303eb92a435d33ea870cc51f98
     #- name: zmk-rgbled-widget
     #  remote: hitsmaxft
     #  revision: main
     #  clone-depth: 1
     - name: zmk-dongle-display
       remote: englmaxi
-      revision: main
-      clone-depth: 1
+      revision: 2bb333f87136d33e94a49d86236ed9ec254a8060
     - name: zmk-dongle-screen
       remote: yoshimaru46-fork
       revision: cornix   # janpfischer/upgrade-4.1 (ZMK main/Zephyr4用) に自前ウィジェットを載せた統合ブランチ
@@ -40,19 +64,15 @@ manifest:
     # DYA Studio extensions. ZMK Studio remains enabled as the shared RPC transport.
     - name: zmk-module-ble-management
       remote: cormoran
-      revision: main
-      clone-depth: 1
+      revision: 57738cc4fc6ba80e82a7ac57741a0339cb186cd4
     - name: zmk-module-battery-history
       remote: cormoran
-      revision: main
-      clone-depth: 1
+      revision: 307755dd2ad4d320e14de162e8e5ef018f29d929
     - name: zmk-module-settings-rpc
       remote: cormoran
-      revision: main
-      clone-depth: 1
+      revision: 78f86df9e6c5edaf57bef3ccbd7f360cfdf49291
     - name: zmk-module-runtime-input-processor
       remote: cormoran
-      revision: main
-      clone-depth: 1
+      revision: decf628d7ce5ed95b520c650824c28ea9de649c1
   self:
     path: config

@@ -1,15 +1,15 @@
 # CLAUDE.md
 
-## ファームウェアのビルドは必ずローカルで行う
+## ファームウェアのビルドは GitHub Actions で行う
 
-キーマップや設定を変更したら、GitHub Actions を待たずに**ローカルでビルドして確認する**。
+キーマップや設定を変更したら、push して **Actions でビルドして確認する**。
+手元に toolchain と west の依存（約 9GiB）を置かないため、ローカルではビルドしない
+（`west init` / `west update` や Nix・Zephyr SDK の導入もしない）。
 
-手順は `build-flash` skill（`.claude/skills/build-flash/SKILL.md`）に従う。詳細・背景は
-`docs/local-build.md`。要点だけ再掲:
+手順は `build-flash` skill（`.claude/skills/build-flash/SKILL.md`）に従う。
 
-- `nix develop --command west build ...` を直接叩く。**`just build` は使わない**
-  （`config2` 参照と `ZMK_EXTRA_MODULES` による Kconfig 再帰エラーで壊れる）
-- west の依存（`zmk/`, `zephyr/`, `modules/` 等）は取得済みなので `just init` は不要
+- 依存は `config/west.yml`、再利用 workflow は `.github/workflows/` で SHA 固定。上げるときは独立した PR にする
+  - ZMK を上げるときは workflow の SHA と、west.yml の zephyr の SHA・blocklist も揃える
 - ドングル構成ではキーマップは central（ドングル）側にあるため、キーマップ変更時はドングルのみ書き込めばよい
 
 ## リポジトリ運用

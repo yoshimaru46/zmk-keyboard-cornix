@@ -11,7 +11,7 @@ firmware
 # west / nix build outputs
 compile_commands.json
 
-# west-managed dependencies (fetched by `just init` / `west update`)
+# west-managed dependencies (fetched by `west update`)
 /.west/
 /zmk/
 /zmk-helpers/

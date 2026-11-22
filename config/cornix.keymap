@@ -118,7 +118,7 @@
             // -----------------------------------------------------------------------------------------------------
             // |     |   1   |   2   |   3   |   4   |  5  |                |  6  |  7   |  8  |  9  |  0  |     |
             // |     |       |       | LHalf | RHalf |     |                | LFT | DWN  | UP  | RGT |     |     |
-            // |     | DelWd | DelLn |       |  Max  |     |  ---  |  | --- |     | VOL- | VOL+|     |     |     |
+            // |     | DelWd | DelLn |       |  Max  |     |  ---  |  | --- | HOME| PGDN | PGUP| END |     |     |
             //                     |     |       |          |  |          |       |     |
             // DelWd = ⌥⌫, DelLn = ⌘⌫
             // LHalf/RHalf/Max = ⌃⌥←/→/⏎ (Raycast Window Management: Left/Right Half, Maximize)
@@ -126,7 +126,7 @@
             bindings = <
 &none   &kp N1        &kp N2        &kp N3         &kp N4         &kp N5                     &kp N6        &kp N7        &kp N8        &kp N9     &kp N0     &none
 &none   &none         &none         &kp LC(LA(LEFT))  &kp LC(LA(RIGHT))  &none            &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT  &none      &none
-&none   &kp LA(BSPC)  &kp LG(BSPC)  &none          &kp LC(LA(RET))  &none  &trans  &trans      &none         &kp C_VOL_DN  &kp C_VOL_UP  &none      &none      &none
+&none   &kp LA(BSPC)  &kp LG(BSPC)  &none          &kp LC(LA(RET))  &none  &trans  &trans      &kp HOME      &kp PG_DN     &kp PG_UP     &kp END    &none      &none
 &trans  &trans     &trans     &trans     &trans     &trans                          &trans        &trans        &trans     &trans     &trans     &trans
             >;
             sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp C_VOL_UP C_VOL_DN>;

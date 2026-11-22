@@ -14,7 +14,8 @@ read `README.md` in full and follow its development notes, especially:
 - DYA Studio dependency and configuration notes, if present.
 
 Prefer minimal compatibility changes. Preserve legacy board targets unless the
-README or user request says to remove them. Validate with the current west/ZMK
-build environment when possible, and inspect `.config` for settings backend
+README or user request says to remove them. Validate with the GitHub Actions
+build (see `.claude/skills/build-flash/SKILL.md`; do not build locally), and
+inspect the "Kconfig file" step in its log for settings backend
 correctness (`CONFIG_NVS=y`, `CONFIG_SETTINGS_NVS=y`, and no
 `CONFIG_SETTINGS_NONE=y`) after settings-related changes.
